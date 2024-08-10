@@ -13,20 +13,16 @@ def enter_data():
             #user info
             title = title_combobox.get()
             age = age_spinbox.get()
-            registered = reg_status_var.get()
-            print("first name: ", firstname, "last name:", lastname)
-            print("you are ", registered)
 
             conn = sqlite3.connect('data.db')
             table_create_query = '''CREATE TABLE IF NOT EXISTS student_data
-            (firstname TEXT, lastname TEXT, title TEXT, age INT, 
-            registration_status TEXT)
+            (firstname TEXT, lastname TEXT, title TEXT, age INT)
             
             '''
             conn.execute(table_create_query)
             data_insert_query = '''INSERT INTO student_data (firstname, lastname, title,
-            age, registration_status) VALUES (?, ?, ?, ?, ?)'''
-            data_insert_tuple = (firstname, lastname, title, age, registered)
+            age) VALUES (?, ?, ?, ?)'''
+            data_insert_tuple = (firstname, lastname, title, age)
             cursor = conn.cursor()
             cursor.execute(data_insert_query, data_insert_tuple)
             conn.commit()
@@ -39,10 +35,6 @@ def enter_data():
 window = tk.Tk()
 frame = tk.Frame(window)
 frame.pack()
-
-# conn = sqlite3.connect('test.db')
-
-# print("opened database successfully")
 
 user_info_frame = tk.LabelFrame(frame, text="User information")
 user_info_frame.grid(column=0, row=0)
@@ -73,13 +65,6 @@ for widget in user_info_frame.winfo_children():
 courses_form = tk.LabelFrame(frame)
 courses_form.grid(row=1, column=0, sticky="news")
 
-registered_label = tk.Label(courses_form, text="registration status")
-reg_status_var = tk.StringVar(value="not registered")
-registered_check = tk.Checkbutton(courses_form, text="currently registered",
-                                   variable=reg_status_var, onvalue="registered" , offvalue="not registered")
-registered_label.grid(row=0, column=0)
-registered_check.grid(row=0, column=1)
-
 for widget in courses_form.winfo_children():
     widget.grid_configure(padx=10, pady=5)
 
@@ -95,7 +80,3 @@ button = tk.Button(frame, text="Enter data", command=enter_data)
 button.grid(row=3, column=0)
 
 window.mainloop()
-
-# conn.close()
-# print("closed database successfully")
-
