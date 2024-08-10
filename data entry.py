@@ -10,17 +10,16 @@ def enter_data():
         firstname = first_name_entry.get()
         lastname = last_name_entry.get()
         if firstname and lastname:
-            #user info
             title = title_combobox.get()
             age = age_spinbox.get()
 
             conn = sqlite3.connect('data.db')
-            table_create_query = '''CREATE TABLE IF NOT EXISTS student_data
+            table_create_query = '''CREATE TABLE IF NOT EXISTS data
             (firstname TEXT, lastname TEXT, title TEXT, age INT)
             
             '''
             conn.execute(table_create_query)
-            data_insert_query = '''INSERT INTO student_data (firstname, lastname, title,
+            data_insert_query = '''INSERT INTO data (firstname, lastname, title,
             age) VALUES (?, ?, ?, ?)'''
             data_insert_tuple = (firstname, lastname, title, age)
             cursor = conn.cursor()
