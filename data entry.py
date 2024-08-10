@@ -14,10 +14,23 @@ def enter_data():
             title = title_combobox.get()
             age = age_spinbox.get()
             registered = reg_status_var.get()
-            # terms = terms_check.get()
-
             print("first name: ", firstname, "last name:", lastname)
             print("you are ", registered)
+
+            conn = sqlite3.connect('data.db')
+            table_create_query = '''CREATE TABLE IF NOT EXISTS student_data
+            (firstname TEXT, lastname TEXT, title TEXT, age INT, 
+            registration_status TEXT)
+            
+            '''
+            conn.execute(table_create_query)
+            data_insert_query = '''INSERT INTO student_data (firstname, lastname, title,
+            age, registration_status) VALUES (?, ?, ?, ?, ?)'''
+            data_insert_tuple = (firstname, lastname, title, age, registered)
+            cursor = conn.cursor()
+            cursor.execute(data_insert_query, data_insert_tuple)
+            conn.commit()
+            conn.close()
         else:
             messagebox.showwarning(title="error", message="First name and last name are required")
     else:
