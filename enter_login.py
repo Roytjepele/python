@@ -1,5 +1,6 @@
 import tkinter as tk
 import sqlite3
+import random as rd
 
 window = tk.Tk()
 window.title("enter login")
@@ -7,17 +8,21 @@ window.geometry('800x600')
 window.configure(bg='#333333')
 
 def login():
+    user_id = rd.randint(1,99999999999999)
     username = username_entry.get()
     password = password_entry.get()
     conn = sqlite3.connect('data.db')
-    table_create_query = '''CREATE TABLE IF NOT EXISTS login(
-    username VARCHAR(250),
-    password VARCHAR(250))
+    table_create_query = '''CREATE TABLE IF NOT EXISTS user_login(
+    user_id INT NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    PRIMARY KEY (user_id)
+    )
     
     '''
     conn.execute(table_create_query)
-    data_insert_query = '''INSERT INTO login (username, password) VALUES (?, ?)'''
-    data_insert_tuple = (username, password)
+    data_insert_query = '''INSERT INTO user_login (user_id, username, password) VALUES (?, ?, ?)'''
+    data_insert_tuple = (user_id, username, password)
     cursor = conn.cursor()
     cursor.execute(data_insert_query, data_insert_tuple)
     conn.commit()
