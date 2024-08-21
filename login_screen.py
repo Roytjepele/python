@@ -10,10 +10,12 @@ def login():
     username = username_entry.get()
     password = password_entry.get()
     conn = sqlite3.connect('data.db')
-    data_insert_query = '''INSERT INTO login (username, password) VALUES (?, ?)'''
-    data_insert_tuple = (username, password)
     cursor = conn.cursor()
-    cursor.execute(data_insert_query, data_insert_tuple)
+    checkUsername = cursor.execute('SELECT username FROM user_login WHERE username=(?)', (username))
+    checkPassword = cursor.execute('SELECT username FROM user_login WHERE password=(?)', (password))
+    cursor.execute(checkUsername)
+    cursor.execute(checkPassword)
+    print(checkUsername)
     conn.commit()
     conn.close()
     
