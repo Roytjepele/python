@@ -14,12 +14,19 @@ def enter_data():
             age = age_spinbox.get()
 
             conn = sqlite3.connect('data.db')
-            table_create_query = '''CREATE TABLE IF NOT EXISTS data
-            (firstname TEXT, lastname TEXT, title TEXT, age INT)
+            table_create_query = '''CREATE TABLE IF NOT EXISTS user_data
+            (user_id INT NOT NULL, 
+            firstname VARCHAR(255) NOT NULL, 
+            lastname VARCHAR(255) NOT NULL, 
+            title VARCHAR(255), 
+            age INT,
+            PRIMARY KEY (user_id)
+            FOREIGN KEY (user_id) REFERENCES user_login (user_id)
+            )
             
             '''
             conn.execute(table_create_query)
-            data_insert_query = '''INSERT INTO data (firstname, lastname, title,
+            data_insert_query = '''INSERT INTO user_data (firstname, lastname, title,
             age) VALUES (?, ?, ?, ?)'''
             data_insert_tuple = (firstname, lastname, title, age)
             cursor = conn.cursor()
