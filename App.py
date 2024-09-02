@@ -1,7 +1,6 @@
 from tkinter import *
 import tkinter as tk
-import random as rd
-from gui.software.register_account import enter_login
+from register_account import enter_login
 import sqlite3
 
 
