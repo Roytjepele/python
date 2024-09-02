@@ -1,7 +1,7 @@
-import tkinter as tk
-import sqlite3
-from tkinter import *
 import random as rd
+import sqlite3
+import tkinter as tk
+from tkinter import Label
 
 
 class enter_login:
@@ -13,11 +13,11 @@ class enter_login:
         background_mainframe.configure(background='#6a6a6a')
         frame = tk.Frame(main_frame)
         frame.pack()
-        
+
         login_label = tk.Label(main_frame, text="Create Account", bg='#6a6a6a', fg='black', font=("Arial", 16))
         username_label = tk.Label(main_frame, text="Username", bg='#6a6a6a', fg='black', font=("Arial", 16))
         global username_entry
-        global password_entry 
+        global password_entry
         username_entry = tk.Entry(main_frame, font=("Arial", 16))
         password_entry = tk.Entry(main_frame, show="*", font=("Arial", 16))
 
@@ -32,9 +32,6 @@ class enter_login:
         password_entry.grid(row=2, column=6, pady=10)
         login_button.grid(row=3, column=5, columnspan=2)
 
-        
-
-    
     def login():
             user_id = rd.randint(1,99999999999999)
             username = username_entry.get()

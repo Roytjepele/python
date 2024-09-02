@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import *
 import sqlite3
 from tkinter import messagebox as mb
+from data_entry import member_entry
 
 class login_screen:
 
@@ -26,6 +27,7 @@ class login_screen:
                         data = c.execute(sql)
                         if data.fetchone():
                                 user_info_frame.destroy()
+                                member_entry()
                         else:
                                 mb.showerror(title="Error", message="Your credentials are wrong. Please try again.")
 
