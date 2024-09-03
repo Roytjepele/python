@@ -2,6 +2,7 @@ from tkinter import *
 import tkinter as tk
 from register_account import enter_login
 from data_entry import member_entry
+from present_value import Present_value
 import sqlite3
 from tkinter import messagebox as mb
 
@@ -40,8 +41,8 @@ class App(tk.Tk):
         background_menuframe= Label(menu_frame, background="black")
         background_menuframe.place(x=0, y=0, relwidth=1, relheight=1)
 
-        inicio_btn = tk.Button(menu_frame, text="Create account", font=("Bold", 18), fg="white", bd=0, bg="grey", padx=30, activebackground='#6a6a6a', command=lambda: enter_login(main_frame))
-        inicio_btn.place(x=10, y=100)
+        create_account_btn = tk.Button(menu_frame, text="Create account", font=("Bold", 18), fg="white", bd=0, bg="grey", padx=30, activebackground='#6a6a6a', command=lambda: enter_login(main_frame))
+        create_account_btn.place(x=10, y=100)
 
         page1_indicate = tk.Label(menu_frame, text="", bg="#6a6a6a")
         page1_indicate.place(x=3, y=100, width=5, height=43)
@@ -61,7 +62,12 @@ class App(tk.Tk):
                 sql = "SELECT * FROM user_login WHERE username = '%s' AND password = '%s'" % (Username, password)
                 data = c.execute(sql)
                 if data.fetchone():
-                        member_entry(main_frame)
+                        create_account_btn.destroy()
+                        Create_member_info = tk.Button(menu_frame, text="Create member", font=("Bold", 18), fg="white", bd=0, bg="grey", padx=30, activebackground='#6a6a6a', command=lambda: member_entry(main_frame))
+                        Create_member_info.place(x=10, y=150)
+                        Present_value_btn = tk.Button(menu_frame, text="Calculate Present Value", font=("Bold", 18), fg="white", bd=0, bg="grey", padx=30, activebackground='#6a6a6a', command=lambda: Present_value(main_frame))
+                        Present_value_btn.place(x=10, y=100)
+
                 else:
                         mb.showerror(title="Error", message="Your credentials are wrong. Please try again.")
         
