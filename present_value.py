@@ -32,10 +32,14 @@ class Present_value:
         interest_entry = Entry(main_frame, font=("arial", 16))
         interest_entry.grid(row=3, column=2)
 
-    def calculate_fv():
-        Principal = principal_entry.get()
-        Interest = interest_entry.get()
-        Term = term_entry.get()
+        calculate_button = Button(main_frame, text="calculate", command=calculate_fv)
+        calculate_button.grid(row=4, column=3)
 
-        fv_compound_interest = pow((Principal * (1+(Interest/100))), Term)
-        print(fv_compound_interest)
+
+        def calculate_fv():
+            Principal = principal_entry.get()
+            Interest = interest_entry.get()
+            Term = term_entry.get()
+
+            fv_compound_interest = pow((Principal * (1+(Interest/100))), Term)
+            return(fv_compound_interest)

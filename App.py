@@ -1,10 +1,13 @@
 from tkinter import *
 import tkinter as tk
+import sqlite3
+from tkinter import messagebox as mb
+
 from register_account import enter_login
 from data_entry import member_entry
 from present_value import Present_value
-import sqlite3
-from tkinter import messagebox as mb
+from datatable import Show_Historical_Data
+
 
 
 class App(tk.Tk):
@@ -64,9 +67,11 @@ class App(tk.Tk):
                 if data.fetchone():
                         create_account_btn.destroy()
                         Create_member_info = tk.Button(menu_frame, text="Create member", font=("Bold", 18), fg="white", bd=0, bg="grey", padx=30, activebackground='#6a6a6a', command=lambda: member_entry(main_frame))
-                        Create_member_info.place(x=10, y=150)
+                        Create_member_info.place(x=10, y=100)
                         Present_value_btn = tk.Button(menu_frame, text="Calculate Present Value", font=("Bold", 18), fg="white", bd=0, bg="grey", padx=30, activebackground='#6a6a6a', command=lambda: Present_value(main_frame))
-                        Present_value_btn.place(x=10, y=100)
+                        Present_value_btn.place(x=10, y=150)
+                        Present_value_btn = tk.Button(menu_frame, text="Show historical data", font=("Bold", 18), fg="white", bd=0, bg="grey", padx=30, activebackground='#6a6a6a', command=lambda: Show_Historical_Data(main_frame))
+                        Present_value_btn.place(x=10, y=200)
 
                 else:
                         mb.showerror(title="Error", message="Your credentials are wrong. Please try again.")
