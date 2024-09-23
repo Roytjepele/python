@@ -7,47 +7,45 @@ from tkinter import messagebox
 class member_entry:
 
     def __init__(self, main_frame):
+        for widget in main_frame.winfo_children():
+            widget.destroy()
+        
         self.frame = tk.Frame(main_frame)
-        background_mainframe = Label(main_frame)
-        background_mainframe.place(x=0, y=0, relwidth=1, relheight=1)
-        background_mainframe.configure(background='#6a6a6a')
-        frame = tk.Frame(main_frame)
-        frame.pack()
+        self.frame.pack()
 
-        first_name_label= tk.Label(main_frame, text="first name", bg="#6a6a6a", fg="white")
+        info_frame = tk.LabelFrame(self.frame, text="Information", fg="white")
+        info_frame.configure(bg='#6a6a6a')
+        info_frame.grid(row=0, column=0, sticky="news", padx=20, pady=20)
+
+        first_name_label= tk.Label(info_frame, text="first name", bg="#6a6a6a", fg="white")
         first_name_label.grid(row=0, column=0)
-        last_name_label = tk.Label(main_frame, text="last name", bg="#6a6a6a", fg="white")
+        last_name_label = tk.Label(info_frame, text="last name", bg="#6a6a6a", fg="white")
         last_name_label.grid(row=1, column=0)
 
         global first_name_entry
-        first_name_entry = tk.Entry(main_frame, font=("Arial", 16))
+        first_name_entry = tk.Entry(info_frame, font=("Arial", 16))
         first_name_entry.grid(row=0, column=1)
         global last_name_entry 
-        last_name_entry = tk.Entry(main_frame, font=("Arial", 16))
+        last_name_entry = tk.Entry(info_frame, font=("Arial", 16))
         last_name_entry.grid(row=1, column=1)
 
-        title_label = tk.Label(main_frame, text="Title", bg="#6a6a6a", fg="white")
+        title_label = tk.Label(info_frame, text="Title", bg="#6a6a6a", fg="white")
         global title_combobox
-        title_combobox = ttk.Combobox(main_frame, values=["Mr.", "Ms.", "Dr."])
+        title_combobox = ttk.Combobox(info_frame, values=["Mr.", "Ms.", "Dr."])
         title_label.grid(row=0, column=2)
         title_combobox.grid(row=0, column=3)
 
-        age_label = tk.Label(main_frame, text="Age", bg="#6a6a6a", fg="white")
+        age_label = tk.Label(info_frame, text="Age", bg="#6a6a6a", fg="white")
         global age_spinbox 
-        age_spinbox = tk.Spinbox(main_frame, from_=18, to=110)
+        age_spinbox = tk.Spinbox(info_frame, from_=18, to=110)
         age_label.grid(row=1, column=2)
         age_spinbox.grid(row=1, column=3)
 
         for widget in main_frame.winfo_children():
             widget.grid_configure(padx=10, pady=5)
 
-        courses_form = tk.LabelFrame(frame)
-        courses_form.grid(row=1, column=0, sticky="news")
 
-        for widget in courses_form.winfo_children():
-            widget.grid_configure(padx=10, pady=5)
-
-        terms_frame = tk.LabelFrame(frame, text="terms & conditions", fg="white")
+        terms_frame = tk.LabelFrame(self.frame, text="terms & conditions", fg="white")
         terms_frame.configure(bg='#6a6a6a')
         terms_frame.grid(row=2, column=0, sticky="news", padx=20, pady=20)
 
@@ -58,10 +56,11 @@ class member_entry:
                                     bg="#6a6a6a", fg="white")
         terms_check.grid(row=0, column=0)
 
-        button = tk.Button(frame, text="Enter data", command=member_entry.enter_data)
+        button = tk.Button(self.frame, text="Enter data", command=member_entry.enter_data)
         button.grid(row=3, column=0)
 
     def enter_data():
+        
         accepted = accept_var.get()
         
         if accepted =="Accepted":

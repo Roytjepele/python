@@ -47,6 +47,9 @@ class App(tk.Tk):
         create_account_btn = tk.Button(menu_frame, text="Create account", font=("Bold", 18), fg="white", bd=0, bg="grey", padx=30, activebackground='#6a6a6a', command=lambda: enter_login(main_frame))
         create_account_btn.place(x=10, y=100)
 
+        # login_btn = tk.Button(menu_frame, text="Login", font=("Bold", 18), fg="white", bd=0, bg="grey", padx=30, activebackground='#6a6a6a', command=lambda: App(main_frame))
+        # login_btn.place(x=10, y=150)
+
         page1_indicate = tk.Label(menu_frame, text="", bg="#6a6a6a")
         page1_indicate.place(x=3, y=100, width=5, height=43)
 

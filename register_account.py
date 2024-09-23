@@ -7,6 +7,9 @@ from tkinter import Label
 class enter_login:
 
     def __init__(self, main_frame):
+        for widget in main_frame.winfo_children():
+            widget.destroy()
+
         self.frame = tk.Frame(main_frame)
         background_mainframe = Label(main_frame)
         background_mainframe.place(x=0, y=0, relwidth=1, relheight=1)
