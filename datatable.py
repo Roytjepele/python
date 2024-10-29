@@ -12,7 +12,7 @@ class Show_Historical_Data:
             widget.destroy()
 
         self.frame = Frame(main_frame)
-        self.frame.pack(padx=10, pady=10)
+        self.frame.pack(padx=10, pady=10, fill='both', expand=1)
 
 
         self.table = Table(self.frame, dataframe=df)

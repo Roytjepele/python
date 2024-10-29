@@ -17,13 +17,12 @@ class enter_login:
         frame = tk.Frame(main_frame)
         frame.pack()
 
-        login_label = tk.Label(main_frame, text="Create Account", bg='#6a6a6a', fg='black', font=("Arial", 16))
+        login_label = tk.Label(main_frame, text="Create Login", bg='#6a6a6a', fg='black', font=("Arial", 16))
         username_label = tk.Label(main_frame, text="Username", bg='#6a6a6a', fg='black', font=("Arial", 16))
         global username_entry
         global password_entry
         username_entry = tk.Entry(main_frame, font=("Arial", 16))
         password_entry = tk.Entry(main_frame, show="*", font=("Arial", 16))
-
 
         password_label = tk.Label(main_frame, text="Password", bg='#6a6a6a', fg='black', font=("Arial", 16))
         login_button = tk.Button(main_frame, text="Create account", command=enter_login.login)
